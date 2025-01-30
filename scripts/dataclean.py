@@ -1,12 +1,12 @@
 import csv
 import pathlib
 
+data_path = pathlib.Path(".") / "data"
+
 
 def main():
     price_dict: dict[int, dict] = {}
-    with open(
-        "/home/erdurano/Projects/fueler_API/data/fuel-prices-for-be-assessment.csv"
-    ) as file:
+    with open((data_path / "fuel-prices-for-be-assessment.csv").absolute()) as file:
         reader = csv.reader(file, dialect="excel")
         for index, row in enumerate(reader):
             if index > 0:
@@ -30,7 +30,7 @@ def main():
 
     print(price_dict)
     with open(
-        "/home/erdurano/Projects/fueler_API/data/fuel-prices-filtered.csv",
+        data_path / "fuel-prices-filtered.csv",
         "w",
     ) as output:
         writer = csv.writer(output, dialect="excel")
