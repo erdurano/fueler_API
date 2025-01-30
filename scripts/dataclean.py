@@ -4,7 +4,6 @@ import os
 from dotenv import load_dotenv
 from typing import List, Union, Dict, Any, Optional
 from requests import post, Response
-import json
 
 data_path = pathlib.Path(".") / "data"
 
@@ -39,13 +38,13 @@ def sanitize_data():
     return price_dict
 
 
-def update_long_lat_data(fuel_stops: Dict[int, Dict[str, Union[int, float, str]]]):
+def insert_long_lat_data(fuel_stops: Dict[int, Dict[str, Union[int, float, str]]]):
     def chunks(data, size):
         it = iter(data)
         for i in range(0, len(data), size):
             yield {k: data[k] for k in list(it)[:size]}
 
-    def get_reqest_dict(
+    def get_request_dict(
         batch: Dict[int, Dict[str, Any]]
     ) -> Dict[str, List[Dict[str, str]]]:
         request_dict = {
@@ -74,11 +73,15 @@ def update_long_lat_data(fuel_stops: Dict[int, Dict[str, Union[int, float, str]]
             return response
 
     for fuel_stop_batch in chunks(fuel_stops, 100):
-        request_dict = get_reqest_dict(fuel_stop_batch)
+        request_dict = get_request_dict(fuel_stop_batch)
         response = request_batch_data(request_dict)
         if response is not None:
             response_dict = response.json()
-            print(response_dict)
+            for index, item in enumerate(response_dict["results"]):
+                name = item["providedLocation"]["location"]
+                latitude, longitude = item["locations"][0]["latLng"].values()
+                print(name, "\tlat:", latitude, "\tlong:", longitude)
+
         # TODO: Take lattitude and logitude data from response dict
 
 
@@ -104,8 +107,8 @@ def print_to_file(fuel_stops: Dict[int, Dict[str, Union[int, float, str]]]):
 
 
 def main():
-    sanitized_rows = sanitize_data()
-    update_long_lat_data(sanitized_rows)
+    sanitized_data = sanitize_data()
+    insert_long_lat_data(sanitized_data)
     # print(sanitized_rows)
     # print_to_file(sanitized_rows)
 
