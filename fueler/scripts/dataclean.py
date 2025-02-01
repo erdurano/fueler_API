@@ -10,15 +10,16 @@ data_path = pathlib.Path(".") / "data"
 load_dotenv()
 
 
-def sanitize_data():
-    """Removes duplicate fuel stops. Holds smaller fuel prices for each stop for calculating fuel prices further down"""
+def sanitize_data(file_name: str):
+    """Removes duplicate fuel stops. Holds smaller fuel prices for each stop for calculating fuel prices further down. Returns a dictionary which keys are OPIS TruckStop ID's."""
     price_dict: dict[int, dict] = {}
-    with open((data_path / "fuel-prices-for-be-assessment.csv").absolute()) as file:
+    with open((data_path / file_name).absolute()) as file:
         reader = csv.reader(file, dialect="excel")
         for index, row in enumerate(reader):
             if index > 0:
                 item = dict()
                 print(row)
+                opis_id = int(row[0])
                 item["name"] = row[1].strip()
                 item["address"] = row[2].strip()
                 item["city"] = row[3].strip()
@@ -26,35 +27,37 @@ def sanitize_data():
                 item["rack_id"] = row[5].strip()
                 gallon_price = float(row[6])
                 try:
-                    if gallon_price < price_dict[int(row[0])]["gallon_price"]:
+                    if gallon_price < price_dict[opis_id]["gallon_price"]:
                         item["gallon_price"] = gallon_price
                     else:
-                        item["gallon_price"] = price_dict[int(row[0])]["gallon_price"]
+                        item["gallon_price"] = price_dict[opis_id]["gallon_price"]
                 except KeyError:
                     item["gallon_price"] = gallon_price
 
-                price_dict[int(row[0])] = item
+                price_dict[opis_id] = item
 
     return price_dict
 
 
-def insert_long_lat_data(fuel_stops: Dict[int, Dict[str, Union[int, float, str]]]):
+def insert_long_lat_data(
+    fuel_stops: Dict[int, Dict[str, Union[int, float, str]]]
+) -> None:
     def chunks(data, size):
         it = iter(data)
         for i in range(0, len(data), size):
             yield {k: data[k] for k in list(it)[:size]}
 
     def get_request_dict(
-        batch: Dict[int, Dict[str, Any]]
+        batch: Dict[str, Dict[str, Any]]
     ) -> Dict[str, List[Dict[str, str]]]:
         request_dict = {
             "locations": [
                 {
-                    "location": value["name"],
+                    "location": key,
                     "city": value["city"],
                     "state": value["state"],
                 }
-                for value in batch.values()
+                for key, value in batch.items()
             ]
         }
         return request_dict
@@ -107,7 +110,7 @@ def print_to_file(fuel_stops: Dict[int, Dict[str, Union[int, float, str]]]):
 
 
 def main():
-    sanitized_data = sanitize_data()
+    sanitized_data = sanitize_data("fuel-prices-for-be-assessment.csv")
     insert_long_lat_data(sanitized_data)
     # print(sanitized_rows)
     # print_to_file(sanitized_rows)
