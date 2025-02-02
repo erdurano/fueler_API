@@ -1,12 +1,10 @@
 # Manually written to insert longitude and latitude data for pinning on map
 
 
-import csv
 import os
-from pathlib import Path
 
 import requests
-from django.db import migrations, models
+from django.db import migrations
 from dotenv import load_dotenv
 
 from fueler.models import City, FuelStation
