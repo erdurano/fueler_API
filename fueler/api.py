@@ -1,4 +1,5 @@
-from ninja import NinjaAPI
+from ninja import NinjaAPI, Query
+from .schemas import RouteResponse, StartStopPair
 
 api = NinjaAPI()
 
@@ -10,26 +11,52 @@ Start-end address or start-end locations are required as pairs.
 
 Examples:
 
-/api/route?start_address=150 Belvedere, Fort Curry, CA&end_address=1130 Trunk St, Milton, PA
-
 /api/route?start_location=-12.95678,30.06278&end_location=32.12345,16.5793
 """,
+    response=RouteResponse,
 )
 def route_by_query(
     request,
-    start_address: str = "",
-    end_address: str = "",
-    start_location: str = "",
-    end_location: str = "",
+    start_location: Query[str] = "0,0",
+    end_location: Query[str] = "0,0",
 ):
     return {
-        "start": start_address,
-        "end": end_address,
-        "start_loc": start_location,
-        "end_loc": end_location,
+        "start": {"latitude": -34.456, "longitude": 12.567},
+        "end": {"latitude": -34.456, "longitude": 12.567},
+        "duration": 0,
+        "usd_gas_expended": 0,
+        "map_url": "string",
+        "route_points": [{"latitude": -34.456, "longitude": 12.567}],
+        "fuel_stops": [
+            {
+                "opis_id": "string",
+                "name": "string",
+                "address": "string",
+                "city": "string",
+                "state": "string",
+                "location": {"latitude": -34.456, "longitude": 12.567},
+            }
+        ],
     }
 
 
-@api.post("route/")
-def route_by_request_body(request):
-    return "sumthing"
+@api.post("route/", response=RouteResponse)
+def route_by_request_body(request, start_stop: StartStopPair):
+    return {
+        "start": {"latitude": -34.456, "longitude": 12.567},
+        "end": {"latitude": -34.456, "longitude": 12.567},
+        "duration": 0,
+        "usd_gas_expended": 0,
+        "map_url": "string",
+        "route_points": [{"latitude": -34.456, "longitude": 12.567}],
+        "fuel_stops": [
+            {
+                "opis_id": "string",
+                "name": "string",
+                "address": "string",
+                "city": "string",
+                "state": "string",
+                "location": {"latitude": -34.456, "longitude": 12.567},
+            }
+        ],
+    }
