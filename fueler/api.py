@@ -1,5 +1,6 @@
 from ninja import NinjaAPI, Query
-from .schemas import RouteResponse, StartStopPair
+from .schemas import RouteResponse, StartStopPair, Location
+from .services import RouteService
 
 api = NinjaAPI()
 
@@ -7,7 +8,7 @@ api = NinjaAPI()
 @api.get(
     "route/",
     description="""
-Start-end address or start-end locations are required as pairs.
+Location strings should be a pair of latitude,longitude.
 
 Examples:
 
@@ -20,43 +21,16 @@ def route_by_query(
     start_location: Query[str] = "0,0",
     end_location: Query[str] = "0,0",
 ):
-    return {
-        "start": {"latitude": -34.456, "longitude": 12.567},
-        "end": {"latitude": -34.456, "longitude": 12.567},
-        "duration": 0,
-        "usd_gas_expended": 0,
-        "map_url": "string",
-        "route_points": [{"latitude": -34.456, "longitude": 12.567}],
-        "fuel_stops": [
-            {
-                "opis_id": "string",
-                "name": "string",
-                "address": "string",
-                "city": "string",
-                "state": "string",
-                "location": {"latitude": -34.456, "longitude": 12.567},
-            }
-        ],
-    }
+    start_lat, start_long = (float(i) for i in start_location.split(","))
+    end_lat, end_long = (float(i) for i in end_location.split(","))
+
+    pair = StartStopPair(
+        start=Location(latitude=start_lat, longitude=start_long),
+        end=Location(latitude=end_lat, longitude=end_long),
+    )
+    return RouteService().get_route_data(pair)
 
 
 @api.post("route/", response=RouteResponse)
 def route_by_request_body(request, start_stop: StartStopPair):
-    return {
-        "start": {"latitude": -34.456, "longitude": 12.567},
-        "end": {"latitude": -34.456, "longitude": 12.567},
-        "duration": 0,
-        "usd_gas_expended": 0,
-        "map_url": "string",
-        "route_points": [{"latitude": -34.456, "longitude": 12.567}],
-        "fuel_stops": [
-            {
-                "opis_id": "string",
-                "name": "string",
-                "address": "string",
-                "city": "string",
-                "state": "string",
-                "location": {"latitude": -34.456, "longitude": 12.567},
-            }
-        ],
-    }
+    return RouteService().get_route_data(start_stop)
