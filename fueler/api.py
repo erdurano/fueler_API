@@ -18,7 +18,7 @@ Examples:
 )
 def route_by_query(
     request,
-    start_location: Query[str] = "0,0",
+    start_location: Query[str] = "-73.99874335700979,40.70951739405125",
     end_location: Query[str] = "0,0",
 ):
     start_lat, start_long = (float(i) for i in start_location.split(","))

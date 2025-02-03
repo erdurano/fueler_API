@@ -8,6 +8,7 @@ dependencies = [
     "django==3.2.23",
     "django-ninja>=1.3.0",
     "folium>=0.19.4",
+    "openrouteservice>=2.3.3",
     "polyline>=2.0.2",
     "python-dotenv>=1.0.1",
     "requests==2.31.0",

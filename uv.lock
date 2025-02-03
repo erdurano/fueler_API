@@ -155,6 +155,7 @@ dependencies = [
     { name = "django" },
     { name = "django-ninja" },
     { name = "folium" },
+    { name = "openrouteservice" },
     { name = "polyline" },
     { name = "python-dotenv" },
     { name = "requests" },
@@ -165,6 +166,7 @@ requires-dist = [
     { name = "django", specifier = "==3.2.23" },
     { name = "django-ninja", specifier = ">=1.3.0" },
     { name = "folium", specifier = ">=0.19.4" },
+    { name = "openrouteservice", specifier = ">=2.3.3" },
     { name = "polyline", specifier = ">=2.0.2" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "requests", specifier = "==2.31.0" },
@@ -309,6 +311,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/d1/3c/ccd08578dc532a8e6927952339d4a02682b776d5e85be49ed0760308433e/numpy-2.2.2-pp310-pypy310_pp73-macosx_14_0_x86_64.whl", hash = "sha256:e9e82dcb3f2ebbc8cb5ce1102d5f1c5ed236bf8a11730fb45ba82e2841ec21df", size = 6792494 },
     { url = "https://files.pythonhosted.org/packages/7c/28/8754b9aee4f97199f9a047f73bb644b5a2014994a6d7b061ba67134a42de/numpy-2.2.2-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e0d4142eb40ca6f94539e4db929410f2a46052a0fe7a2c1c59f6179c39938d2a", size = 16197312 },
     { url = "https://files.pythonhosted.org/packages/26/96/deb93f871f401045a684ca08a009382b247d14996d7a94fea6aa43c67b94/numpy-2.2.2-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:356ca982c188acbfa6af0d694284d8cf20e95b1c3d0aefa8929376fea9146f60", size = 12822674 },
+]
+
+[[package]]
+name = "openrouteservice"
+version = "2.3.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c7/c2/2a9784750f244d6f2ae982f7e2862383af4c6d8d9e9ca793603500d04d16/openrouteservice-2.3.3.tar.gz", hash = "sha256:3696e0428533cf6bbcb9586c3bcfca7b5e7aaa269650ff16a862a7f61b857f4a", size = 29130 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/67/1a/e6944e4cfd7c5386b15e4b4056084b3c8c676aca0a215d8b507a6cbc1263/openrouteservice-2.3.3-py3-none-any.whl", hash = "sha256:a84fe298b1de7a4fb1d8aa19798687f4f66fe212e5206667c703ca2c7e5de0ce", size = 33749 },
 ]
 
 [[package]]
