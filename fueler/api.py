@@ -28,9 +28,9 @@ def route_by_query(
         start=Location(latitude=start_lat, longitude=start_long),
         end=Location(latitude=end_lat, longitude=end_long),
     )
-    return RouteService().get_route_data(pair)
+    return RouteService().get_route_data(pair, request)
 
 
 @api.post("route/", response=RouteResponse)
 def route_by_request_body(request, start_stop: StartStopPair):
-    return RouteService().get_route_data(start_stop)
+    return RouteService().get_route_data(start_stop, request)

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "fueler",
+    "maps",
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,4 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MAPS_URL = "/maps/"
+MAPS_DIRECTORY = BASE_DIR / "maps" / "generated"

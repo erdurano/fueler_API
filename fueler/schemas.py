@@ -23,11 +23,15 @@ class FuelStop(Schema):
     location: Location
 
 
+class FuelData(Schema):
+    total_fuel_usd: float = 0
+    fuel_stops: list[FuelStop]
+
+
 class RouteResponse(Schema):
     start: Location
     end: Location
     duration: float
-    usd_gas_expended: float
     map_url: str
     route_points: list[Location]
-    fuel_stops: list[FuelStop]
+    fuel_data: FuelData

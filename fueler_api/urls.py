@@ -15,7 +15,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from fueler.api import api
 
-urlpatterns = [path("admin/", admin.site.urls), path("api/", api.urls)]
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("maps/", include("maps.urls")),
+    path("api/", api.urls),
+]
