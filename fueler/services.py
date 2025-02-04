@@ -207,23 +207,23 @@ class RouteService:
     __headers = {"Authorization": str(os.getenv("OPENROUTE_KEY"))}
 
     def get_route_data(self, start_stop: StartStopPair, request):
-        # request_json = {
-        #     "coordinates": [
-        #         [start_stop.start.latitude, start_stop.start.longitude],
-        #         [start_stop.end.latitude, start_stop.end.longitude],
-        #     ],
-        #     "units": "mi",
-        # }
-        # response = requests.post(
-        #     url=self.__base_url, headers=self.__headers, json=request_json
-        # )
+        request_json = {
+            "coordinates": [
+                [start_stop.start.longitude, start_stop.start.latitude],
+                [start_stop.end.longitude, start_stop.end.latitude],
+            ],
+            "units": "mi",
+        }
+        response = requests.post(
+            url=self.__base_url, headers=self.__headers, json=request_json
+        )
 
-        # if response.status_code != 200:
-        #     raise Exception
+        if response.status_code != 200:
+            raise Exception
 
-        # response_dict = response.json()
+        response_dict = response.json()
 
-        response_dict = new_york_to_la
+        # response_dict = new_york_to_la
 
         # client = openrouteservice.Client(key=str(os.getenv("OPENROUTE_KEY")))
 
