@@ -24,7 +24,7 @@ dotenv.load_dotenv()
 class FuelService:
     max_range_miles: float = 500.0
     miles_per_gallon: float = 10.0
-    reserve_miles: float = 50
+    reserve_miles: float = 150
 
     def __init__(self):
         self._reset()
@@ -119,6 +119,24 @@ class FuelService:
         self.range -= self._distance_from_station_to_next(station)
         self.direction_step += 1
 
+    def _fit_fuel_stops_to_schema(self):
+        to_deliver = []
+        for stop in self.fuel_stops:
+            to_deliver.append(
+                {
+                    "opis_id": stop.opis_id,
+                    "name": stop.name,
+                    "address": stop.address,
+                    "city": stop.city,
+                    "state": stop._state,
+                    "location": {
+                        "latitude": stop.latitude,
+                        "longitude": stop.longitude,
+                    },
+                }
+            )
+        return to_deliver
+
     def get_fuel_data(
         self, direction_steps: list, route_points: list[tuple[float, float]]
     ):
@@ -136,7 +154,7 @@ class FuelService:
                 self._advance()
         return {
             "usd_gas_expended": self.usd_gas_expended,
-            "fuel_stops": self.fuel_stops,
+            "fuel_stops": self._fit_fuel_stops_to_schema(),
         }
 
 
@@ -169,7 +187,10 @@ class MapService:
 
         for stop in fuel_stops:
             folium.Marker(
-                (stop["location"]["latitude"], stop["location"]["longitude"]),
+                (
+                    float(stop["location"]["latitude"]),
+                    float(stop["location"]["longitude"]),
+                ),
                 tooltip="station",
                 popup=stop["name"],
                 icon=folium.Icon(icon="gas-pump"),
