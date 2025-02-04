@@ -238,14 +238,14 @@ new_york_to_la = {
     "bbox": [-118.117598, 34.047766, -73.991172, 41.756919],
     "routes": [
         {
-            "summary": {"distance": 4486701.4, "duration": 161206.9},
+            "summary": {"distance": 2787.907, "duration": 161206.9},
             "segments": [
                 {
-                    "distance": 4486701.4,
+                    "distance": 2787.907,
                     "duration": 161206.9,
                     "steps": [
                         {
-                            "distance": 300.3,
+                            "distance": 0.187,
                             "duration": 43.2,
                             "type": 11,
                             "instruction": "Head north on Catherine Slip",
@@ -253,7 +253,7 @@ new_york_to_la = {
                             "way_points": [0, 6],
                         },
                         {
-                            "distance": 213.9,
+                            "distance": 0.133,
                             "duration": 27.8,
                             "type": 6,
                             "instruction": "Continue straight onto Monroe Street",
@@ -261,7 +261,7 @@ new_york_to_la = {
                             "way_points": [6, 9],
                         },
                         {
-                            "distance": 80.1,
+                            "distance": 0.05,
                             "duration": 19.2,
                             "type": 0,
                             "instruction": "Turn left onto Market Street",
@@ -269,7 +269,7 @@ new_york_to_la = {
                             "way_points": [9, 12],
                         },
                         {
-                            "distance": 175.7,
+                            "distance": 0.109,
                             "duration": 32.2,
                             "type": 1,
                             "instruction": "Turn right onto Madison Street",
@@ -277,7 +277,7 @@ new_york_to_la = {
                             "way_points": [12, 17],
                         },
                         {
-                            "distance": 565.7,
+                            "distance": 0.351,
                             "duration": 92.5,
                             "type": 0,
                             "instruction": "Turn left onto Pike Street",
@@ -285,7 +285,7 @@ new_york_to_la = {
                             "way_points": [17, 28],
                         },
                         {
-                            "distance": 172.6,
+                            "distance": 0.107,
                             "duration": 23.8,
                             "type": 0,
                             "instruction": "Turn left onto Grand Street",
@@ -293,7 +293,7 @@ new_york_to_la = {
                             "way_points": [28, 31],
                         },
                         {
-                            "distance": 226,
+                            "distance": 0.14,
                             "duration": 40.7,
                             "type": 1,
                             "instruction": "Turn right onto Forsyth Street",
@@ -301,7 +301,7 @@ new_york_to_la = {
                             "way_points": [31, 34],
                         },
                         {
-                            "distance": 170,
+                            "distance": 0.106,
                             "duration": 22.1,
                             "type": 0,
                             "instruction": "Turn left onto Delancey Street",
@@ -309,7 +309,7 @@ new_york_to_la = {
                             "way_points": [34, 37],
                         },
                         {
-                            "distance": 351,
+                            "distance": 0.218,
                             "duration": 41.1,
                             "type": 5,
                             "instruction": "Turn slight right onto Kenmare Street",
@@ -317,7 +317,7 @@ new_york_to_la = {
                             "way_points": [37, 43],
                         },
                         {
-                            "distance": 67.6,
+                            "distance": 0.042,
                             "duration": 9.7,
                             "type": 0,
                             "instruction": "Turn left onto Lafayette Street",
@@ -325,7 +325,7 @@ new_york_to_la = {
                             "way_points": [43, 44],
                         },
                         {
-                            "distance": 741.3,
+                            "distance": 0.461,
                             "duration": 83.6,
                             "type": 1,
                             "instruction": "Turn right onto Broome Street",
@@ -333,7 +333,7 @@ new_york_to_la = {
                             "way_points": [44, 56],
                         },
                         {
-                            "distance": 3621.2,
+                            "distance": 2.25,
                             "duration": 325.7,
                             "type": 6,
                             "instruction": "Continue straight",
@@ -341,7 +341,7 @@ new_york_to_la = {
                             "way_points": [56, 106],
                         },
                         {
-                            "distance": 1861,
+                            "distance": 1.156,
                             "duration": 132.7,
                             "type": 12,
                             "instruction": "Keep left onto 14th Street Viaduct, NJ 139",
@@ -349,7 +349,7 @@ new_york_to_la = {
                             "way_points": [106, 125],
                         },
                         {
-                            "distance": 127.7,
+                            "distance": 0.079,
                             "duration": 20,
                             "type": 13,
                             "instruction": "Keep right",
@@ -357,7 +357,7 @@ new_york_to_la = {
                             "way_points": [125, 130],
                         },
                         {
-                            "distance": 4136.1,
+                            "distance": 2.57,
                             "duration": 175.2,
                             "type": 1,
                             "instruction": "Turn right onto Tonnelle Avenue, US 1, US 9",
@@ -365,7 +365,7 @@ new_york_to_la = {
                             "way_points": [130, 192],
                         },
                         {
-                            "distance": 45876,
+                            "distance": 28.506,
                             "duration": 2026.9,
                             "type": 12,
                             "instruction": "Keep left onto NJ 3",
@@ -373,7 +373,7 @@ new_york_to_la = {
                             "way_points": [192, 863],
                         },
                         {
-                            "distance": 21508.3,
+                            "distance": 13.365,
                             "duration": 827.8,
                             "type": 1,
                             "instruction": "Turn right",
@@ -381,7 +381,7 @@ new_york_to_la = {
                             "way_points": [863, 1025],
                         },
                         {
-                            "distance": 41671,
+                            "distance": 25.893,
                             "duration": 1763,
                             "type": 12,
                             "instruction": "Keep left onto Christopher Columbus Highway, I 80",
@@ -389,7 +389,7 @@ new_york_to_la = {
                             "way_points": [1025, 1478],
                         },
                         {
-                            "distance": 426.3,
+                            "distance": 0.265,
                             "duration": 21.2,
                             "type": 12,
                             "instruction": "Keep left",
@@ -397,7 +397,7 @@ new_york_to_la = {
                             "way_points": [1478, 1486],
                         },
                         {
-                            "distance": 8360,
+                            "distance": 5.195,
                             "duration": 560,
                             "type": 6,
                             "instruction": "Continue straight onto I 80",
@@ -405,7 +405,7 @@ new_york_to_la = {
                             "way_points": [1486, 1567],
                         },
                         {
-                            "distance": 511106.8,
+                            "distance": 317.587,
                             "duration": 18838.3,
                             "type": 12,
                             "instruction": "Keep left onto I 80",
@@ -413,7 +413,7 @@ new_york_to_la = {
                             "way_points": [1567, 4571],
                         },
                         {
-                            "distance": 7240.5,
+                            "distance": 4.499,
                             "duration": 274.4,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -421,7 +421,7 @@ new_york_to_la = {
                             "way_points": [4571, 4616],
                         },
                         {
-                            "distance": 775.7,
+                            "distance": 0.482,
                             "duration": 58.8,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -429,7 +429,7 @@ new_york_to_la = {
                             "way_points": [4616, 4628],
                         },
                         {
-                            "distance": 569581.4,
+                            "distance": 353.921,
                             "duration": 20707.9,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -437,7 +437,7 @@ new_york_to_la = {
                             "way_points": [4628, 7157],
                         },
                         {
-                            "distance": 979.4,
+                            "distance": 0.609,
                             "duration": 87.1,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -445,7 +445,7 @@ new_york_to_la = {
                             "way_points": [7157, 7178],
                         },
                         {
-                            "distance": 165.6,
+                            "distance": 0.103,
                             "duration": 13.2,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -453,7 +453,7 @@ new_york_to_la = {
                             "way_points": [7178, 7183],
                         },
                         {
-                            "distance": 36981.1,
+                            "distance": 22.979,
                             "duration": 2148.2,
                             "type": 6,
                             "instruction": "Continue straight onto I 80",
@@ -461,7 +461,7 @@ new_york_to_la = {
                             "way_points": [7183, 7346],
                         },
                         {
-                            "distance": 233392.7,
+                            "distance": 145.024,
                             "duration": 8975.9,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -469,7 +469,7 @@ new_york_to_la = {
                             "way_points": [7346, 8237],
                         },
                         {
-                            "distance": 310488.7,
+                            "distance": 192.929,
                             "duration": 11328.4,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -477,7 +477,7 @@ new_york_to_la = {
                             "way_points": [8237, 9174],
                         },
                         {
-                            "distance": 191410.4,
+                            "distance": 118.937,
                             "duration": 6909,
                             "type": 13,
                             "instruction": "Keep right onto I 80",
@@ -485,7 +485,7 @@ new_york_to_la = {
                             "way_points": [9174, 9799],
                         },
                         {
-                            "distance": 570717.2,
+                            "distance": 354.627,
                             "duration": 18984.7,
                             "type": 12,
                             "instruction": "Keep left onto I 80 Express",
@@ -493,7 +493,7 @@ new_york_to_la = {
                             "way_points": [9799, 11515],
                         },
                         {
-                            "distance": 286071.2,
+                            "distance": 177.756,
                             "duration": 9389.2,
                             "type": 13,
                             "instruction": "Keep right onto I 76",
@@ -501,7 +501,7 @@ new_york_to_la = {
                             "way_points": [11515, 12177],
                         },
                         {
-                            "distance": 57245.2,
+                            "distance": 35.57,
                             "duration": 2268.2,
                             "type": 12,
                             "instruction": "Keep left onto Heartland Expressway, I 76",
@@ -509,7 +509,7 @@ new_york_to_la = {
                             "way_points": [12177, 12727],
                         },
                         {
-                            "distance": 765109.5,
+                            "distance": 475.417,
                             "duration": 26060.1,
                             "type": 13,
                             "instruction": "Keep right",
@@ -517,7 +517,7 @@ new_york_to_la = {
                             "way_points": [12727, 18362],
                         },
                         {
-                            "distance": 391835.6,
+                            "distance": 243.475,
                             "duration": 13119.1,
                             "type": 12,
                             "instruction": "Keep left",
@@ -525,7 +525,7 @@ new_york_to_la = {
                             "way_points": [18362, 19766],
                         },
                         {
-                            "distance": 77412.4,
+                            "distance": 48.102,
                             "duration": 2837.2,
                             "type": 12,
                             "instruction": "Keep left",
@@ -533,7 +533,7 @@ new_york_to_la = {
                             "way_points": [19766, 19939],
                         },
                         {
-                            "distance": 1421.6,
+                            "distance": 0.883,
                             "duration": 51.2,
                             "type": 12,
                             "instruction": "Keep left onto Mojave Freeway, I 15",
@@ -541,7 +541,7 @@ new_york_to_la = {
                             "way_points": [19939, 19950],
                         },
                         {
-                            "distance": 23.8,
+                            "distance": 0.015,
                             "duration": 2.5,
                             "type": 13,
                             "instruction": "Keep right onto Mojave Freeway, I 15",
@@ -549,7 +549,7 @@ new_york_to_la = {
                             "way_points": [19950, 19951],
                         },
                         {
-                            "distance": 31.7,
+                            "distance": 0.02,
                             "duration": 3.3,
                             "type": 6,
                             "instruction": "Continue straight onto Mojave Freeway, I 15",
@@ -557,7 +557,7 @@ new_york_to_la = {
                             "way_points": [19951, 19952],
                         },
                         {
-                            "distance": 262484.1,
+                            "distance": 163.1,
                             "duration": 9490.3,
                             "type": 6,
                             "instruction": "Continue straight onto Mojave Freeway, I 15",
@@ -565,7 +565,7 @@ new_york_to_la = {
                             "way_points": [19952, 20714],
                         },
                         {
-                            "distance": 23806.7,
+                            "distance": 14.793,
                             "duration": 877.5,
                             "type": 12,
                             "instruction": "Keep left onto Ontario Freeway, I 15",
@@ -573,7 +573,7 @@ new_york_to_la = {
                             "way_points": [20714, 20831],
                         },
                         {
-                            "distance": 53575.3,
+                            "distance": 33.29,
                             "duration": 2065.2,
                             "type": 13,
                             "instruction": "Keep right",
@@ -581,7 +581,7 @@ new_york_to_la = {
                             "way_points": [20831, 21196],
                         },
                         {
-                            "distance": 164.4,
+                            "distance": 0.102,
                             "duration": 13.2,
                             "type": 13,
                             "instruction": "Keep right",
@@ -589,7 +589,7 @@ new_york_to_la = {
                             "way_points": [21196, 21198],
                         },
                         {
-                            "distance": 162.8,
+                            "distance": 0.101,
                             "duration": 28.4,
                             "type": 13,
                             "instruction": "Keep right",
@@ -597,7 +597,7 @@ new_york_to_la = {
                             "way_points": [21198, 21205],
                         },
                         {
-                            "distance": 66.8,
+                            "distance": 0.042,
                             "duration": 9.6,
                             "type": 0,
                             "instruction": "Turn left onto Saxon Avenue",
@@ -605,7 +605,7 @@ new_york_to_la = {
                             "way_points": [21205, 21208],
                         },
                         {
-                            "distance": 392.8,
+                            "distance": 0.244,
                             "duration": 35.7,
                             "type": 0,
                             "instruction": "Turn left onto New Avenue",
@@ -613,7 +613,7 @@ new_york_to_la = {
                             "way_points": [21208, 21214],
                         },
                         {
-                            "distance": 447.8,
+                            "distance": 0.278,
                             "duration": 41.2,
                             "type": 3,
                             "instruction": "Turn sharp right onto East Hellman Avenue",
@@ -621,7 +621,7 @@ new_york_to_la = {
                             "way_points": [21214, 21219],
                         },
                         {
-                            "distance": 815.1,
+                            "distance": 0.506,
                             "duration": 68.3,
                             "type": 0,
                             "instruction": "Turn left onto North Orange Avenue",
@@ -629,7 +629,7 @@ new_york_to_la = {
                             "way_points": [21219, 21227],
                         },
                         {
-                            "distance": 50.1,
+                            "distance": 0.031,
                             "duration": 9,
                             "type": 0,
                             "instruction": "Turn left onto East Garvey Avenue",
@@ -637,7 +637,7 @@ new_york_to_la = {
                             "way_points": [21227, 21228],
                         },
                         {
-                            "distance": 1478.7,
+                            "distance": 0.919,
                             "duration": 112.8,
                             "type": 1,
                             "instruction": "Turn right onto South Orange Avenue",
@@ -645,7 +645,7 @@ new_york_to_la = {
                             "way_points": [21228, 21268],
                         },
                         {
-                            "distance": 614.5,
+                            "distance": 0.382,
                             "duration": 110.6,
                             "type": 13,
                             "instruction": "Keep right",
@@ -671,7 +671,7 @@ new_york_to_la = {
     "metadata": {
         "attribution": "openrouteservice.org | OpenStreetMap contributors",
         "service": "routing",
-        "timestamp": 1738539382198,
+        "timestamp": 1738638197454,
         "query": {
             "coordinates": [
                 [-73.99874335700979, 40.70951739405125],
@@ -680,6 +680,7 @@ new_york_to_la = {
             "profile": "driving-car",
             "profileName": "driving-car",
             "format": "json",
+            "units": "mi",
         },
         "engine": {
             "version": "9.0.0",
