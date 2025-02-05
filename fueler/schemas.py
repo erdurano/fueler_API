@@ -11,8 +11,8 @@ class Location(Schema):
 
 
 class StartStopPair(Schema):
-    start: Location
-    end: Location
+    start: Location =  Location(longitude=-73.99874335700979, latitude= 40.70951739405125)
+    end: Location = Location(longitude=-118.11802966659334, latitude=34.0469989651079)
 
 
 class FuelStop(Schema):
