@@ -1,5 +1,6 @@
 from ninja import Schema
 from collections import namedtuple
+from .models import FuelStation
 
 location = namedtuple("location", ["latitude", "longitude"])
 
@@ -15,12 +16,25 @@ class StartStopPair(Schema):
 
 
 class FuelStop(Schema):
-    opis_id: str
+    opis_id: int
     name: str
     address: str
     city: str
     state: str
     location: Location
+
+    @classmethod
+    def from_model(cls, instance: FuelStation):
+        return cls(
+            opis_id=instance.opis_id,
+            name=instance.name,
+            address=instance.address,
+            city=instance.city.name,
+            state=instance.city.state,
+            location=Location(
+                latitude=float(instance.latitude), longitude=float(instance.longitude)
+            ),
+        )
 
 
 class FuelData(Schema):

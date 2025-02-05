@@ -16,7 +16,7 @@ from openrouteservice.directions import directions
 
 from .models import FuelStation
 from .other.example_jsons import new_york_to_la
-from .schemas import Location, RouteResponse, StartStopPair, location
+from .schemas import Location, RouteResponse, StartStopPair, location, FuelStop
 
 dotenv.load_dotenv()
 
@@ -119,23 +119,23 @@ class FuelService:
         self.range -= self._distance_from_station_to_next(station)
         self.direction_step += 1
 
-    def _fit_fuel_stops_to_schema(self):
-        to_deliver = []
-        for stop in self.fuel_stops:
-            to_deliver.append(
-                {
-                    "opis_id": stop.opis_id,
-                    "name": stop.name,
-                    "address": stop.address,
-                    "city": stop.city,
-                    "state": stop._state,
-                    "location": {
-                        "latitude": stop.latitude,
-                        "longitude": stop.longitude,
-                    },
-                }
-            )
-        return to_deliver
+    # def _fit_fuel_stops_to_schema(self):
+    #     to_deliver = []
+    #     for stop in self.fuel_stops:
+    #         to_deliver.append(
+    #             {
+    #                 "opis_id": stop.opis_id,
+    #                 "name": stop.name,
+    #                 "address": stop.address,
+    #                 "city": stop.city,
+    #                 "state": stop._state,
+    #                 "location": {
+    #                     "latitude": stop.latitude,
+    #                     "longitude": stop.longitude,
+    #                 },
+    #             }
+    #         )
+    #     return to_deliver
 
     def get_fuel_data(
         self, direction_steps: list, route_points: list[tuple[float, float]]
@@ -154,7 +154,7 @@ class FuelService:
                 self._advance()
         return {
             "usd_gas_expended": self.usd_gas_expended,
-            "fuel_stops": self._fit_fuel_stops_to_schema(),
+            "fuel_stops": [FuelStop.from_model(stop) for stop in self.fuel_stops],
         }
 
 
@@ -164,7 +164,7 @@ class MapService:
     def get_map(
         bounding_box: list[float],
         route_geometry: list[tuple[float, float]],
-        fuel_stops: list[dict],
+        fuel_stops: list[FuelStop],
         request,
     ):
         map_id = str(datetime.now())
@@ -188,11 +188,13 @@ class MapService:
         for stop in fuel_stops:
             folium.Marker(
                 (
-                    float(stop["location"]["latitude"]),
-                    float(stop["location"]["longitude"]),
+                    float(
+                        stop.location.latitude,
+                    ),
+                    float(stop.location.longitude),
                 ),
                 tooltip="station",
-                popup=stop["name"],
+                popup=stop.name,
                 icon=folium.Icon(icon="gas-pump"),
             ).add_to(map)
 
@@ -266,6 +268,9 @@ class RouteService:
             "end": route_end,
             "duration": duration,
             "map_url": map_url,
-            "fuel_data": fuel_data,
+            "fuel_data": {
+                "total_usd_spent": fuel_data["usd_gas_expended"],
+                "fuel_stops": fuel_data["fuel_stops"],
+            },
             "route_points": route_points,
         }
