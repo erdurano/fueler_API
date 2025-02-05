@@ -1,4 +1,3 @@
-from ast import Tuple
 import math
 import os
 from datetime import datetime
@@ -8,15 +7,13 @@ import dotenv
 import folium
 import openrouteservice
 import polyline
-import requests
 from django.conf import settings
 from django.db.models import Q
 from geopy.distance import distance as geodistance
 from openrouteservice.directions import directions
 
 from .models import FuelStation
-from .other.example_jsons import new_york_to_la
-from .schemas import Location, RouteResponse, StartStopPair, location, FuelStop
+from .schemas import FuelStop, Location, StartStopPair
 
 dotenv.load_dotenv()
 
@@ -119,24 +116,6 @@ class FuelService:
         self.range -= self._distance_from_station_to_next(station)
         self.direction_step += 1
 
-    # def _fit_fuel_stops_to_schema(self):
-    #     to_deliver = []
-    #     for stop in self.fuel_stops:
-    #         to_deliver.append(
-    #             {
-    #                 "opis_id": stop.opis_id,
-    #                 "name": stop.name,
-    #                 "address": stop.address,
-    #                 "city": stop.city,
-    #                 "state": stop._state,
-    #                 "location": {
-    #                     "latitude": stop.latitude,
-    #                     "longitude": stop.longitude,
-    #                 },
-    #             }
-    #         )
-    #     return to_deliver
-
     def get_fuel_data(
         self, direction_steps: list, route_points: list[tuple[float, float]]
     ):
@@ -149,7 +128,7 @@ class FuelService:
                 or self._distance_to_next_location() > self.range
             ):
                 station = self._find_optimal_station()
-                self._advance_through_fuel_stop(station)
+                self._advance_through_fuel_stop(station)  # type: ignore
             else:
                 self._advance()
         return {
@@ -167,7 +146,11 @@ class MapService:
         fuel_stops: list[FuelStop],
         request,
     ):
-        map_id = str(datetime.now())
+        map_id = "{:%Y%m%d%H%M%S}".format(datetime.now())
+
+        maps_folder = Path(settings.MAPS_DIRECTORY)
+        if not maps_folder.exists():
+            maps_folder.mkdir(parents=True, exist_ok=True)
 
         file_path = Path(settings.MAPS_DIRECTORY) / f"{map_id}.html"
 
@@ -205,37 +188,18 @@ class MapService:
 
 
 class RouteService:
-    __base_url = "https://api.openrouteservice.org/v2/directions/driving-car/json"
-    __headers = {"Authorization": str(os.getenv("OPENROUTE_KEY"))}
 
     def get_route_data(self, start_stop: StartStopPair, request):
-        request_json = {
-            "coordinates": [
+
+        client = openrouteservice.Client(key=str(os.getenv("OPENROUTE_KEY")))
+
+        response_dict = directions(
+            client=client,
+            coordinates=[
                 [start_stop.start.longitude, start_stop.start.latitude],
                 [start_stop.end.longitude, start_stop.end.latitude],
             ],
-            "units": "mi",
-        }
-        response = requests.post(
-            url=self.__base_url, headers=self.__headers, json=request_json
         )
-
-        if response.status_code != 200:
-            raise Exception
-
-        response_dict = response.json()
-
-        # response_dict = new_york_to_la
-
-        # client = openrouteservice.Client(key=str(os.getenv("OPENROUTE_KEY")))
-
-        # response_dict = directions(
-        #     client=client,
-        #     coordinates=[
-        #         [start_stop.start.latitude, start_stop.start.longitude],
-        #         [start_stop.end.latitude, start_stop.end.longitude],
-        #     ],
-        # )
         route_points = polyline.decode(response_dict["routes"][0]["geometry"])
         direction_steps = response_dict["routes"][0]["segments"][0]["steps"]
 
@@ -269,7 +233,7 @@ class RouteService:
             "duration": duration,
             "map_url": map_url,
             "fuel_data": {
-                "total_usd_spent": fuel_data["usd_gas_expended"],
+                "total_fuel_usd": fuel_data["usd_gas_expended"],
                 "fuel_stops": fuel_data["fuel_stops"],
             },
             "route_points": route_points,

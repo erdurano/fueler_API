@@ -12,5 +12,4 @@ dependencies = [
     "openrouteservice>=2.3.3",
     "polyline>=2.0.2",
     "python-dotenv>=1.0.1",
-    "requests==2.31.0",
 ]

@@ -1,5 +1,6 @@
 from ninja import NinjaAPI, Query
-from .schemas import RouteResponse, StartStopPair, Location
+
+from .schemas import Location, RouteResponse, StartStopPair
 from .services import RouteService
 
 api = NinjaAPI()
@@ -21,8 +22,8 @@ def route_by_query(
     start_location: Query[str] = "-73.99874335700979,40.70951739405125",
     end_location: Query[str] = "0,0",
 ):
-    start_lat, start_long = (float(i) for i in start_location.split(","))
-    end_lat, end_long = (float(i) for i in end_location.split(","))
+    start_long, start_lat = (float(i) for i in start_location.split(","))
+    end_long, end_lat = (float(i) for i in end_location.split(","))
 
     pair = StartStopPair(
         start=Location(latitude=start_lat, longitude=start_long),

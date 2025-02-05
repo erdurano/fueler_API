@@ -1,17 +1,19 @@
-from ninja import Schema
 from collections import namedtuple
+
+from ninja import Schema
+
 from .models import FuelStation
 
 location = namedtuple("location", ["latitude", "longitude"])
 
 
 class Location(Schema):
-    latitude: float = -34.456
     longitude: float = 12.567
+    latitude: float = -34.456
 
 
 class StartStopPair(Schema):
-    start: Location =  Location(longitude=-73.99874335700979, latitude= 40.70951739405125)
+    start: Location = Location(longitude=-73.99874335700979, latitude=40.70951739405125)
     end: Location = Location(longitude=-118.11802966659334, latitude=34.0469989651079)
 
 
@@ -47,5 +49,5 @@ class RouteResponse(Schema):
     end: Location
     duration: float
     map_url: str
-    route_points: list[Location]
     fuel_data: FuelData
+    route_points: list[Location]
